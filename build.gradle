@@ -1,12 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'nexus'
-apply plugin: 'org.standardout.versioneye'
 
-version = '1.3.2'
+version = '1.3.2-java6'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -30,13 +29,14 @@ buildscript {
 
     dependencies {
         classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
-        classpath 'org.standardout:gradle-versioneye-plugin:1.2.0'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
     }
 }
+apply plugin: "com.jfrog.artifactory"
 
 ext {
     log4jVersion = '1.2.17'
-    powermockVersion = '1.6.4'
+    powermockVersion = '1.6.3'
 }
 
 modifyPom {
@@ -84,17 +84,40 @@ repositories {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    gradleVersion = '2.8'
 }
 
 dependencies {
     compile group: 'log4j', name: 'log4j', version: log4jVersion
-    compile 'net.java.dev.jna:jna:4.2.2'
+    compile 'net.java.dev.jna:jna:4.2.1'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermockVersion
     testCompile group: 'org.powermock', name: 'powermock-api-mockito', version: powermockVersion
 }
+
+//artifactory {
+//    contextUrl = "http://dil-vm-gap-12.aircell.prod:8081/artifactory"
+//    publish {
+//        repository {
+//            repoKey = 'libs-snapshot-local'
+//            username = 'jenkins'
+//            maven = true
+//
+//        }       
+//        defaults {
+//            publications ('mavenJava')
+//        }
+//    }
+//}
+//
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
+//        }
+//    }
+//}
 
 // vim: set ts=4 sw=4 et:

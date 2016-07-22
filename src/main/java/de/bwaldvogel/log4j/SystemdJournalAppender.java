@@ -80,7 +80,7 @@ public class SystemdJournalAppender extends AppenderSkeleton {
 
     @Override
     protected void append(LoggingEvent event) {
-        List<Object> args = new ArrayList<>();
+        List<Object> args = new ArrayList();
         args.add(buildRenderedMessage(event));
 
         args.add("PRIORITY=%d");

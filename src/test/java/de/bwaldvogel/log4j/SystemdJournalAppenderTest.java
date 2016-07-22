@@ -36,7 +36,7 @@ public class SystemdJournalAppenderTest {
 
         journalAppender.append(event);
 
-        List<Object> expectedArgs = new ArrayList<>();
+        List<Object> expectedArgs = new ArrayList();
         expectedArgs.add("some message");
         expectedArgs.add("PRIORITY=%d");
         expectedArgs.add(6);
@@ -59,7 +59,7 @@ public class SystemdJournalAppenderTest {
 
         journalAppender.append(event);
 
-        List<Object> expectedArgs = new ArrayList<>();
+        List<Object> expectedArgs = new ArrayList();
         expectedArgs.add("some message");
         expectedArgs.add("PRIORITY=%d");
         expectedArgs.add(6);
@@ -84,7 +84,7 @@ public class SystemdJournalAppenderTest {
 
         journalAppender.append(event);
 
-        List<Object> expectedArgs = new ArrayList<>();
+        List<Object> expectedArgs = new ArrayList();
         expectedArgs.add("some message");
         expectedArgs.add("PRIORITY=%d");
         expectedArgs.add(6);
